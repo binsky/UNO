@@ -54,10 +54,10 @@ public class Game {
 	}
 	
 	private void setPlayersHandAvailability(Player player) {
-		player.getHand().setHandAvailability(deck.peekDiscardPile());
+		player.getHand().setHandAvailability(deck.getDiscardPile().peek());
 	}
 	
 	private void discard(Player player) {
-		deck.discard(player.getHand().discard(player.getHand().getHand().get(0)));
+		deck.discard(player.getHand().discard(player.getHand().get(0)));
 	}
 }

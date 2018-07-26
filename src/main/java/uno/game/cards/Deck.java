@@ -23,7 +23,7 @@ public class Deck extends Stack<Card> {
 		createDeck();
 	}
 	
-	public List<Card> getDiscardPile() {
+	public Stack<Card> getDiscardPile() {
 		return discardPile;
 	}
 	

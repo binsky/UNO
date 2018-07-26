@@ -11,6 +11,11 @@ public class Hand {
 	
 	public Hand() {}
 	
+	public Card get(int index) {
+		return hand.get(index);
+	}
+	
+	@Deprecated
 	public List<Card> getHand() {
 		return hand;
 	}
