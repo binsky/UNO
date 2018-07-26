@@ -101,9 +101,11 @@ public class Deck extends Stack<Card> {
 	}
 	
 	private void reShuffle() {
+		Card lastDiscardedCard = discardPile.pop();
 		shuffle(discardPile);
 		addAll(discardPile);
 		resetDiscardPile();
+		discardPile.push(lastDiscardedCard);
 	}
 	
 	private boolean isExhausted() {
