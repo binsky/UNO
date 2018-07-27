@@ -9,6 +9,6 @@ public class Quantities {
 	public static final int SWAP_WILD = 1;
 	public static final int OTHER_WILD = 4;
 	
-	public static final int HAND_SIZE = 6; 
+	public static final int HAND_SIZE = 7; 
 	public static final int MAX_NUM_OF_PLAYERS = 6;
 }
