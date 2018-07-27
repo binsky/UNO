@@ -54,6 +54,11 @@ public class Hand {
 	
 	//TEST only
 	public Card discard() {
-		return hand.get(hand.size() - 1);
+//		return hand.get(hand.size() - 1);
+		return hand.size() !=0 ? hand.remove(hand.size() - 1) : null;
+	}
+	
+	public boolean isHandEmpty() {
+		return hand.isEmpty();
 	}
 }

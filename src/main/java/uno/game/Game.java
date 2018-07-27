@@ -39,20 +39,23 @@ public class Game {
 	private void test() {
 		Utils.consoleOutputDeck(deck);
 		
-		for(int i = 0; i++ < 20;)
+		Player p = queue.getNextPlayer();
+		
+		while(!gameOver(p))
 		{
-			if(i==5 || i==10 || i==12) {
-				queue.reverse();
-				System.out.println("reverse");
-			}
-			Player p = queue.getNextPlayer();
+			deck.discard(p.discard());
 			System.out.println(p.getName());
+			p = queue.getNextPlayer();
 //			System.out.println(p.discard());
 		}
 		
-//		Utils.consoleOutputDeck(deck);
+		Utils.consoleOutputDeck(deck);
 	}
 	
+	private boolean gameOver(Player player) {
+		return player.isHandEmpty();
+	}
+
 	private void setPlayersHandAvailability(Player player) {
 		player.getHand().setHandAvailability(deck.getDiscardPile().peek());
 	}

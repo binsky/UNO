@@ -35,4 +35,8 @@ public class Player {
 	public Card discard() {
 		return hand.discard();
 	}
+	
+	public boolean isHandEmpty() {
+		return hand.isHandEmpty();
+	}
 }
