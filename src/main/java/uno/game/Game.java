@@ -11,7 +11,7 @@ import uno.game.common.Quantities;
 public class Game {
 	private List<Player> players = new ArrayList<Player>();
 	private Deck deck = new Deck();
-	private boolean clockwise = true;
+//	private boolean clockwise = true;
 	
 	public void startGame(int numberOfPlayers) {
 		createPlayers(numberOfPlayers);
