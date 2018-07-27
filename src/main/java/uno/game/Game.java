@@ -3,7 +3,7 @@ package uno.game;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import uno.game.cards.Card;
 import uno.game.cards.Deck;
 import uno.game.cards.Utils;
 import uno.game.common.Quantities;
@@ -39,17 +39,38 @@ public class Game {
 	private void test() {
 		Utils.consoleOutputDeck(deck);
 		
-		Player p = queue.getNextPlayer();
+		Player p;
 		
-		while(!gameOver(p))
+		boolean gameOver = false;
+		
+		while(!gameOver)
+			
 		{
-			deck.discard(p.discard());
-			System.out.println(p.getName());
 			p = queue.getNextPlayer();
-//			System.out.println(p.discard());
+			p.setHandAvailability(deck.drawAndDiscard());
+			move(p);
+			gameOver = gameOver(p);
+			if(gameOver) {
+				System.out.println("THE WINNER IS " + p.getName() + "!\n");
+			}
 		}
 		
-		Utils.consoleOutputDeck(deck);
+//		Utils.consoleOutputDeck(deck);
+		
+	}
+	
+	private void move(Player player) {
+		Card card = player.getAvailableCard();
+		if(card != null) {
+			deck.discard(player.discard(card));
+			return;
+		}
+		card = deck.draw();
+		player.draw(card);
+		if(player.checkCardAvailability(card, deck.peekDiscardPile())) {
+			player.discard(card);
+		}
+		return;
 	}
 	
 	private boolean gameOver(Player player) {

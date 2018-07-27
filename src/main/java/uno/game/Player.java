@@ -32,11 +32,33 @@ public class Player {
 		hand.draw(card);
 	}
 	
+	//TEST
 	public Card discard() {
 		return hand.discard();
 	}
 	
 	public boolean isHandEmpty() {
 		return hand.isHandEmpty();
+	}
+	
+	public void setHandAvailability(Card discardedCard) {
+		hand.setHandAvailability(discardedCard);
+	}
+	
+	//TEST
+	public Card getAvailableCard() {
+		for(Card card : hand.getHand()) {
+			if(card.isAvailable())
+				return card;
+		}
+		return null;
+	}
+	
+	public Card discard(Card card) {
+		return hand.discard(card);
+	}
+	
+	public boolean checkCardAvailability(Card card, Card discardedCard) {
+		return hand.checkAndSetCardAvailability(card, discardedCard);
 	}
 }

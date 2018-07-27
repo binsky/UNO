@@ -138,8 +138,7 @@ public class Deck extends Stack<Card> {
 		return hands;
 	}
 	
-	@Deprecated
 	public Card peekDiscardPile() {
-		return discardPile.get(discardPile.size() - 1);
+		return discardPile.peek();
 	}
 }
