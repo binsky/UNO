@@ -1,5 +1,6 @@
 package uno.game;
 
+import uno.game.cards.Card;
 import uno.game.cards.Hand;
 
 public class Player {
@@ -25,5 +26,9 @@ public class Player {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void draw(Card card) {
+		hand.draw(card);
 	}
 }

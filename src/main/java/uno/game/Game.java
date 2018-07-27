@@ -30,7 +30,7 @@ public class Game {
 	private void deal() {
 		for(int i = 0; i++ < Quantities.HAND_SIZE;) {
 			for(Player player : players) {
-				player.getHand().draw(deck.draw());
+				player.draw(deck.draw());
 			}
 		}
 	}
