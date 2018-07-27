@@ -7,6 +7,7 @@ import uno.game.cards.Card;
 import uno.game.cards.Deck;
 import uno.game.cards.Utils;
 import uno.game.common.Quantities;
+import uno.game.common.RANK;
 
 public class Game {
 	PlayersQueue queue;
@@ -37,7 +38,7 @@ public class Game {
 	}
 	
 	private void test() {
-		Utils.consoleOutputDeck(deck);
+//		Utils.consoleOutputDeck(deck);
 		
 		Player p;
 		
@@ -46,8 +47,23 @@ public class Game {
 		while(!gameOver)
 			
 		{
+			deck.drawAndDiscard();
+			Card lastDiscarded = deck.peekDiscardPile();
+			if(lastDiscarded.getRank() == RANK.REVERSE) {
+				queue.reverse();
+				System.out.println("REVERSE");
+			}
+			else if(lastDiscarded.getRank() == RANK.SKIP) {
+				queue.getNextPlayer();
+				System.out.println("SKIP");
+			}
+			else if(lastDiscarded.getRank() == RANK.DRAW2) {
+				queue.getNextPlayer().draw(deck.draw(2));
+				System.out.println("DRAW2");
+			}
 			p = queue.getNextPlayer();
-			p.setHandAvailability(deck.drawAndDiscard());
+			System.out.println(p.getName());
+			p.setHandAvailability(lastDiscarded);
 			move(p);
 			gameOver = gameOver(p);
 			if(gameOver) {

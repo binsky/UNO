@@ -1,5 +1,7 @@
 package uno.game;
 
+import java.util.List;
+
 import uno.game.cards.Card;
 import uno.game.cards.Hand;
 
@@ -30,6 +32,10 @@ public class Player {
 	
 	public void draw(Card card) {
 		hand.draw(card);
+	}
+	
+	public void draw(List<Card> cards) {
+		hand.draw(cards);
 	}
 	
 	//TEST
