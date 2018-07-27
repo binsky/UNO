@@ -4,23 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class PlayersQueue {
+public class PlayersQueue extends ArrayList<Player>{
 	
-	private List<Player> queue = new ArrayList<>();
+	static final long serialVersionUID = 1L;
+	//	private List<Player> queue = new ArrayList<>();
 	private ListIterator<Player> currentPlayerIt;
 	private boolean clockwise = true;
-	private final int firstIndex;
-	private final int lastIndex;
+	private int firstIndex;
+	private int lastIndex;
+	
+	public PlayersQueue() {
+		init();
+	}
 	
 	public PlayersQueue(List<Player> players) {
-		queue.addAll(players);
-		currentPlayerIt = queue.listIterator();
+//		queue.addAll(players);
+		addAll(players);
+		currentPlayerIt = listIterator();
+		init();
+	}
+	
+	private void init() {
 		firstIndex = 0;
-		lastIndex = queue.size() - 1;
+		lastIndex = size() - 1;
 	}
 	
 	public void reverse() {
 		clockwise = !clockwise;
+		getNextPlayer();
 	}
 	
 	public Player getNextPlayer() {
@@ -33,14 +44,13 @@ public class PlayersQueue {
 	}
 
 	private Player getFirst() {
-		Player first = queue.get(firstIndex);
-		currentPlayerIt.set(first);
-		return first;
+		currentPlayerIt = listIterator();
+		return currentPlayerIt.next();
 	}
 	
 	private Player getLast() {
-		Player last = queue.get(lastIndex);
-		currentPlayerIt.set(last);
+		Player last = get(lastIndex);
+		currentPlayerIt = listIterator(lastIndex);
 		return last;
 	}
 }

@@ -31,4 +31,8 @@ public class Player {
 	public void draw(Card card) {
 		hand.draw(card);
 	}
+	
+	public Card discard() {
+		return hand.discard();
+	}
 }

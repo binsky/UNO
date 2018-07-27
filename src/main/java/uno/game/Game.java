@@ -9,9 +9,8 @@ import uno.game.cards.Utils;
 import uno.game.common.Quantities;
 
 public class Game {
-	private List<Player> players = new ArrayList<Player>();
+	PlayersQueue queue;
 	private Deck deck = new Deck();
-//	private boolean clockwise = true;
 	
 	public void startGame(int numberOfPlayers) {
 		createPlayers(numberOfPlayers);
@@ -22,14 +21,16 @@ public class Game {
 	}
 	
 	private void createPlayers(int numberOfPlayers) {
+		List<Player> players = new ArrayList<Player>();
 		for(int i = 0; i++ < numberOfPlayers;) {
 			players.add(new Player("Player_" + i));
 		}
+		queue = new PlayersQueue(players);
 	}
 
 	private void deal() {
 		for(int i = 0; i++ < Quantities.HAND_SIZE;) {
-			for(Player player : players) {
+			for(Player player : queue) {
 				player.draw(deck.draw());
 			}
 		}
@@ -38,19 +39,18 @@ public class Game {
 	private void test() {
 		Utils.consoleOutputDeck(deck);
 		
-		deck.draw(deck.size() - 10);
-		
-		Utils.consoleOutputDeck(deck);
-		
-		for(int i = 0; i++ < 10;) {
-			deck.drawAndDiscard();
+		for(int i = 0; i++ < 20;)
+		{
+			if(i==5 || i==10 || i==12) {
+				queue.reverse();
+				System.out.println("reverse");
+			}
+			Player p = queue.getNextPlayer();
+			System.out.println(p.getName());
+//			System.out.println(p.discard());
 		}
 		
-		Utils.consoleOutputDeck(deck);
-		
-		deck.draw();
-		
-		Utils.consoleOutputDeck(deck);
+//		Utils.consoleOutputDeck(deck);
 	}
 	
 	private void setPlayersHandAvailability(Player player) {

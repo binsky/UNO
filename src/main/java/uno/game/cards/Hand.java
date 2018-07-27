@@ -51,4 +51,9 @@ public class Hand {
 			else currentCard.setAvailable(false);
 		}
 	}
+	
+	//TEST only
+	public Card discard() {
+		return hand.get(hand.size() - 1);
+	}
 }
