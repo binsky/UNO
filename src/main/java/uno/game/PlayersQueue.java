@@ -4,17 +4,20 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
+//need to implement getFirst / getLast
 public class PlayersQueue {
 	
-	private Deque<Player> queue = new ArrayDeque<>();
+	private List<Player> queue = new LinkedList<>();
 	private boolean clockwise = true;
-	private Iterator<Player> currentPlayer;
+	private ListIterator<Player> currentPlayerIt;
 	
 	public PlayersQueue(List<Player> players) {
 		queue.addAll(players);
-		currentPlayer = queue.iterator();
+		currentPlayerIt = queue.listIterator();
 	}
 	
 	public boolean isClockwise() {
@@ -27,13 +30,11 @@ public class PlayersQueue {
 	
 	public Player getNextPlayer() {
 		if(clockwise) {
-			return currentPlayer.hasNext() ? currentPlayer.next() : queue.getFirst();
+			return currentPlayerIt.hasNext() ? currentPlayerIt.next() : queue.get(0);
 		}
 		else {
-//			return currentPlayer.hasPrevious() ? currentPlayer.previous() : queue.getLast();
+			return currentPlayerIt.hasPrevious() ? currentPlayerIt.previous() : queue.get(queue.size() - 1);
 		}
-				
-		return null;
 	}
 	
 }
