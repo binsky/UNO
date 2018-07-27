@@ -43,13 +43,19 @@ public class Hand {
 	
 	public void setHandAvailability(Card discardedCard) {
 		for (Card currentCard : hand) {
-			if (currentCard.getColor() == COLOR.WILD ||
-					currentCard.getColor() == discardedCard.getColor() ||
-					currentCard.getRank() == discardedCard.getRank()) {
-				currentCard.setAvailable(true);
-			}
-			else currentCard.setAvailable(false);
+			checkAndSetCardAvailability(currentCard, discardedCard);
 		}
+	}
+	
+	public boolean checkAndSetCardAvailability(Card card, Card discardedCard) {
+		if (card.getColor() == COLOR.WILD ||
+				card.getColor() == discardedCard.getColor() ||
+				card.getRank() == discardedCard.getRank()) {
+			card.setAvailable(true);
+		}
+		else card.setAvailable(false);
+		
+		return card.isAvailable();
 	}
 	
 	//TEST only
